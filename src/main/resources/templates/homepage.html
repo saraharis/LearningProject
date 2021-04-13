@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th ="https://www.thymeleaf.org">
+<!html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer GET</title>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <div align="center">
+        <a th:href = "@{/NewCustomerForm}"> Add Customer </a>
+        <h1> Customer Info </h1>
+        <table border = "1">
+            <thead>
+                <tr>
+                    <th> First Name</th>
+                    <th> Last Name</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="n: ${customers}">
+                <td th:text="${n.firstName}"></td>
+                <td th:text="${n.lastName}"></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+
