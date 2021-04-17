@@ -31,7 +31,8 @@ public class CustomerController {
 
         //save customer to database
         customerRepository.save(customer);
-        return "redirect:/";
+        //return "redirect:/";
+        return "result";
 
 
     }

@@ -3,33 +3,42 @@
 <!html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>DATA</title>
+    <title>Customer GET</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
 
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-    <div align="center">
-        <a th:href = "@{/NewCustomerForm}"> Add Customer </a>
-        <h1> Customer Info </h1>
-        <table border = "1">
-            <thead>
-                <tr>
-                    <th> First Name</th>
-                    <th> Last Name</th>
 
-                </tr>
-            </thead>
+<div class = "container-my-2">
+    <a th:href = "@{/NewCustomerForm}">
+        <button type="button" class="btn btn-secondary"> Add Customer </button>
+    </a>
+    <h1> Customer Info </h1>
+    <table border = "1" class = "table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th> First Name</th>
+            <th> Last Name</th>
 
-            <tbody>
-            <tr th:each="n: ${customers}">
-                <td th:text="${n.firstName}"></td>
-                <td th:text="${n.lastName}"></td>
+        </tr>
+        </thead>
 
-            </tr>
-            </tbody>
-        </table>
-    </div>
+        <tbody>
+        <tr th:each="n: ${customers}">
+            <td th:text="${n.firstName}"></td>
+            <td th:text="${n.lastName}"></td>
+
+
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
 
