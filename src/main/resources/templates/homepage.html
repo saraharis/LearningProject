@@ -19,6 +19,16 @@
     <a th:href = "@{/NewCustomerForm}">
         <button type="button" class="btn btn-secondary"> Add Customer </button>
     </a>
+
+    <form action = "#" th:action = "@{/searchCustomer}" method = "GET">
+
+        <div class="form-group">
+            <label> Enter Last Name to search </label>
+            <input type="text" class="form-control" placeholder="Last Name" name = "lastName">
+        </div>
+
+    </form>
+
     <h1> Customer Info </h1>
     <table border = "1" class = "table table-striped table-responsive-md">
         <thead>
