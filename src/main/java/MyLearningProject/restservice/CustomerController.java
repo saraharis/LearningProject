@@ -33,7 +33,16 @@ public class CustomerController {
                     });
 
 
+
     @GetMapping("/")
+    public String viewHome(Model model) {
+        //model.addAttribute("customers", customerRepository.findAll());
+        return "chat";
+    }
+
+
+
+    @GetMapping("/CustomerList")
     public String viewCustomers(Model model) {
         model.addAttribute("customers", customerRepository.findAll());
         return "homepage";
