@@ -40,12 +40,31 @@ public class CustomerController {
         return "chat";
     }
 
+    @GetMapping("/firstPage")
+    public String viewFirstPage(Model model) {
+        //model.addAttribute("customers", customerRepository.findAll());
+        return "login";
+    }
+
+    @RequestMapping("/loginPage")
+    public String searchCustomer(@ModelAttribute("firstName") String firstName, @ModelAttribute("password") String password ) throws ExecutionException {
+
+        if (customerRepository.findByFirstName(firstName) == null){
+            return "sign_up_page";
+        }
+        //write check for password
+
+        return "chat";
+    }
+
+
+
 
 
     @GetMapping("/CustomerList")
     public String viewCustomers(Model model) {
         model.addAttribute("customers", customerRepository.findAll());
-        return "homepage";
+        return "login";
 
     }
 
