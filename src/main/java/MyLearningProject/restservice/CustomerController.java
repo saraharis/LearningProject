@@ -46,7 +46,16 @@ public class CustomerController {
         return "login";
     }
 
+    @RequestMapping("/loginPage")
+    public String searchCustomer(@ModelAttribute("firstName") String firstName, @ModelAttribute("password") String password ) throws ExecutionException {
 
+        if (customerRepository.findByFirstName(firstName) == null){
+            return "sign_up_page";
+        }
+        //write check for password
+
+        return "chat";
+    }
 
 
 
