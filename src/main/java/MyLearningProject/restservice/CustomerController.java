@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 @Controller
 public class CustomerController {
 
-    public boolean loggedIn = false;
+    public static boolean loggedIn = false;
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -50,6 +50,7 @@ public class CustomerController {
     @GetMapping("/")
     public String viewFirstPage(Model model) {
         //model.addAttribute("customers", customerRepository.findAll());
+        loggedIn = false;
         return "login";
     }
 
@@ -61,6 +62,11 @@ public class CustomerController {
 
         List<Customer> currentUsernameList = customerRepository.findByFirstName(firstName);
 
+        if ((firstName.isEmpty()) || (password.isEmpty())){
+            System.out.println("incomplete name or password");
+            return "login";
+        }
+
 
         if (currentUsernameList.isEmpty()){
             System.out.println("user not found");
@@ -71,6 +77,7 @@ public class CustomerController {
         for( Customer user : currentUsernameList ){
 
             if (password.equals(user.getPassword())){
+                loggedIn = true;
                 return "chat";
             }
         }
@@ -91,12 +98,7 @@ public class CustomerController {
 
     }
 
-    @GetMapping("/CustomerList")
-    public String viewCustomers(Model model) {
-        model.addAttribute("customers", customerRepository.findAll());
-        return "homepage";
 
-    }
 
 
 
@@ -114,6 +116,7 @@ public class CustomerController {
         }
 
         //save customer to database
+        loggedIn = true;
         customerRepository.save(customer);
         //return "redirect:/";
         return "save_customer";
@@ -126,6 +129,13 @@ public class CustomerController {
         names.stream().forEach(x-> System.out.println(x.firstName));
         model.addAttribute("customers_found", names);
         return "search_result";
+    }
+
+    @GetMapping("/CustomerList")
+    public String viewCustomers(Model model) {
+        model.addAttribute("customers", customerRepository.findAll());
+        return "homepage";
+
     }
 
     @GetMapping("/NewCustomerForm")
