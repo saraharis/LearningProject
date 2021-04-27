@@ -16,6 +16,9 @@ public class Customer {
     //@Column(name = "lastName")
     String lastName;
 
+    String password;
+
+
     protected Customer() {};
 
     public Customer(String firstName, String secondName){
@@ -54,5 +57,13 @@ public class Customer {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

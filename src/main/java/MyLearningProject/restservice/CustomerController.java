@@ -34,46 +34,64 @@ public class CustomerController {
 
 
 
-    @GetMapping("/")
+    @GetMapping("/chat")
     public String viewHome(Model model) {
         //model.addAttribute("customers", customerRepository.findAll());
         return "chat";
     }
 
-    @GetMapping("/firstPage")
+    @GetMapping("/")
     public String viewFirstPage(Model model) {
         //model.addAttribute("customers", customerRepository.findAll());
         return "login";
     }
 
     @RequestMapping("/loginPage")
-    public String searchCustomer(@ModelAttribute("firstName") String firstName, @ModelAttribute("password") String password ) throws ExecutionException {
+    public String loginCustomer(Model model, @ModelAttribute("firstName") String firstName, @ModelAttribute("password") String password) throws ExecutionException {
 
-        if (customerRepository.findByFirstName(firstName) == null){
+        Customer customer = new Customer();
+        model.addAttribute("customer", customer);
+
+        List<Customer> currentUsernameList = customerRepository.findByFirstName(firstName);
+
+
+        if (currentUsernameList.isEmpty()){
+            System.out.println("user not found");
             return "sign_up_page";
         }
-        //write check for password
 
-        return "chat";
+
+        for( Customer user : currentUsernameList ){
+            System.out.println(user.getPassword());
+            if (password.equals(user.getPassword())){
+                return "chat";
+            }
+        }
+
+        /*System.out.println("found in repo" + customerRepository.findByFirstName(firstName));
+        System.out.println(firstName);
+        System.out.println(password);
+        System.out.println(" incorrect password entered for user " + firstName);*/
+
+        return "login";
     }
 
+    @RequestMapping("/newUser")
+    public String registerUser(Model model){
+        Customer customer = new Customer();
+        model.addAttribute("customer", customer);
+        return "sign_up_page";
 
-
+    }
 
     @GetMapping("/CustomerList")
     public String viewCustomers(Model model) {
         model.addAttribute("customers", customerRepository.findAll());
-        return "login";
+        return "homepage";
 
     }
 
-    @GetMapping("/NewCustomerForm")
-    public  String NewCustomerForm(Model model){
-        Customer customer = new Customer();
-        model.addAttribute("customer", customer);
-        return "new_customer";
 
-    }
 
     @RequestMapping("/saveCustomer")
     public String saveCustomer(@ModelAttribute("customer") Customer customer){
@@ -84,13 +102,22 @@ public class CustomerController {
         return "save_customer";
     }
 
-    @RequestMapping("/searchCustomer")
+    /* @RequestMapping("/searchCustomer")
     public String searchCustomer(@ModelAttribute("lastName") String lastName, Model model) throws ExecutionException {
+        System.out.println(" searching for person with last name as " + lastName);
         List<Customer> names = customerCache.get(lastName);
         names.stream().forEach(x-> System.out.println(x.firstName));
         model.addAttribute("customers_found", names);
         return "search_result";
     }
+
+    @GetMapping("/NewCustomerForm")
+    public  String NewCustomerForm(Model model){
+        Customer customer = new Customer();
+        model.addAttribute("customer", customer);
+        return "new_customer";
+
+    }*/
 
 
 

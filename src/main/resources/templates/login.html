@@ -13,8 +13,21 @@
 
 
 <body>
+<div class = "container">
+    <br>
+    <br>
+    <div class="card">
+        <div class="card-body">
+            <h1>CKD's Chat App</h1>
+            <h2> Login to start chatting...</h2>
+
+        </div>
+    </div>
+    <br>
+    <br>
 
 <form action = "#" th:action = "@{/loginPage}" method = "GET">
+<!form>
 
     <div class="form-group">
         <label> First Name </label>
@@ -24,11 +37,17 @@
     <div class="form-group">
         <label> Password </label>
         <input type="text" class="form-control" placeholder="Password" name = "password">
+        <button type="submit" class="btn btn-secondary"> Login </button>
     </div>
 
 
 
-</form>
+    <a th:href="@{/newUser}"> Not registered yet? <button type="button" class="btn btn-secondary"> Sign Up </button> </a>
 
+
+
+
+</form>
+</div>
 </body>
 </html>
