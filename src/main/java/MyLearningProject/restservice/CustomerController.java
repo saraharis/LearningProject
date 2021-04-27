@@ -15,6 +15,8 @@ import java.util.concurrent.TimeUnit;
 @Controller
 public class CustomerController {
 
+    public boolean loggedIn = false;
+
     @Autowired
     private CustomerRepository customerRepository;
 
@@ -37,7 +39,12 @@ public class CustomerController {
     @GetMapping("/chat")
     public String viewHome(Model model) {
         //model.addAttribute("customers", customerRepository.findAll());
-        return "chat";
+        if (loggedIn){
+            System.out.println(loggedIn);
+            return "chat";
+        }
+
+        return "login";
     }
 
     @GetMapping("/")
@@ -62,7 +69,7 @@ public class CustomerController {
 
 
         for( Customer user : currentUsernameList ){
-            System.out.println(user.getPassword());
+
             if (password.equals(user.getPassword())){
                 return "chat";
             }
