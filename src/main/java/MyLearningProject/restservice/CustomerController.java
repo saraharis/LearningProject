@@ -96,6 +96,16 @@ public class CustomerController {
     @RequestMapping("/saveCustomer")
     public String saveCustomer(@ModelAttribute("customer") Customer customer){
 
+        String firstName = customer.getFirstName();
+        String password = customer.getPassword();
+
+        System.out.println(firstName + password);
+
+        if ((firstName.isEmpty()) || (password.isEmpty())){
+            System.out.println("incomplete name or password");
+            return "sign_up_page";
+        }
+
         //save customer to database
         customerRepository.save(customer);
         //return "redirect:/";
