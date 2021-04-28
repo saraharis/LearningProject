@@ -4,18 +4,33 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+//import sun.security.provider.SecureRandom;
 
+//import java.security.MessageDigest;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
+import java.security.*;
 
 @Controller
 public class CustomerController {
 
+    /*SecureRandom r = new SecureRandom();
+    byte[] salt = new byte[16];
+    r.nextBytes(salt);
+    MessageDigest md = MessageDigest.getInstance("SHA-512");
+    md.update(salt);*/
+
+    private static int workload = 12;
+
     public static boolean loggedIn = false;
+    //public static boolean loggedIn = true;
+
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -34,28 +49,20 @@ public class CustomerController {
                         }
                     });
 
+// **************************************************************************************************************************//
 
 
-    @GetMapping("/chat")
-    public String viewHome(Model model) {
-        //model.addAttribute("customers", customerRepository.findAll());
-        if (loggedIn){
-            System.out.println(loggedIn);
-            return "chat";
-        }
-
-        return "login";
-    }
 
     @GetMapping("/")
     public String viewFirstPage(Model model) {
         //model.addAttribute("customers", customerRepository.findAll());
         loggedIn = false;
+        //loggedIn = true;
         return "login";
     }
 
-    @RequestMapping("/loginPage")
-    public String loginCustomer(Model model, @ModelAttribute("firstName") String firstName, @ModelAttribute("password") String password) throws ExecutionException {
+    @PostMapping("/loginPage")
+    public String loginPage(Model model, @ModelAttribute("firstName") String firstName, @ModelAttribute("password") String password) throws ExecutionException, NoSuchAlgorithmException {
 
         Customer customer = new Customer();
         model.addAttribute("customer", customer);
@@ -80,12 +87,40 @@ public class CustomerController {
                 loggedIn = true;
                 return "chat";
             }
+
+
+            String pwdStored = user.getPwd();
+
+
+            if(null == pwdStored || !pwdStored.startsWith("$2a$"))
+                throw new java.lang.IllegalArgumentException("Invalid hash provided for comparison");
+
+            if (BCrypt.checkpw(password, pwdStored)){
+                loggedIn = true;
+                return "chat";
+            }
+
+
+
+
+
         }
 
         /*System.out.println("found in repo" + customerRepository.findByFirstName(firstName));
         System.out.println(firstName);
         System.out.println(password);
         System.out.println(" incorrect password entered for user " + firstName);*/
+
+        return "login";
+    }
+
+    @GetMapping("/chat")
+    public String viewHome(Model model) {
+
+        if (loggedIn){
+            System.out.println(loggedIn);
+            return "chat";
+        }
 
         return "login";
     }
@@ -99,27 +134,44 @@ public class CustomerController {
     }
 
 
-
-
-
     @RequestMapping("/saveCustomer")
-    public String saveCustomer(@ModelAttribute("customer") Customer customer){
+    public String saveCustomer(@ModelAttribute("customer") Customer customer) throws NoSuchAlgorithmException {
 
         String firstName = customer.getFirstName();
         String password = customer.getPassword();
 
-        System.out.println(firstName + password);
+
+
+        System.out.println(" New user signer in " + firstName + password);
 
         if ((firstName.isEmpty()) || (password.isEmpty())){
             System.out.println("incomplete name or password");
             return "sign_up_page";
         }
 
+
+        ///// hashing ////
+        /*SecureRandom r = new SecureRandom();
+        byte[] salt = new byte[16];
+        r.nextBytes(salt);
+        MessageDigest md = MessageDigest.getInstance("SHA-512");
+        md.update(salt);
+        customer.setPwd(md.digest(password.getBytes(StandardCharsets.UTF_8)));*/
+
+        ///**************************************///////
+
+        String salt = BCrypt.gensalt(workload);
+        String pwd = BCrypt.hashpw(password, salt);
+        customer.setPwd(pwd);
+
+
         //save customer to database
         loggedIn = true;
         customerRepository.save(customer);
         //return "redirect:/";
         return "save_customer";
+
+
     }
 
     /* @RequestMapping("/searchCustomer")

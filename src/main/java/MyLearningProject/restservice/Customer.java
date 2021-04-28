@@ -18,6 +18,8 @@ public class Customer {
 
     String password;
 
+    String pwd;
+
 
     protected Customer() {};
 
@@ -59,11 +61,21 @@ public class Customer {
         this.lastName = lastName;
     }
 
+
+
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 }

@@ -14,6 +14,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
+
+       /* http
+                .authorizeRequests()
+                //.antMatchers("/").permitAll()
+                //.anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/loginPage")
+                .permitAll(); */
+
+
     }
 
     @Bean
@@ -22,4 +33,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
         return source;
     }
+
+
+
+
+
+
 }

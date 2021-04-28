@@ -6,6 +6,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import sun.security.provider.SecureRandom;
+
+import java.security.MessageDigest;
 
 @SpringBootApplication
 public class AccessingDataJpaApplication {
@@ -14,7 +17,10 @@ public class AccessingDataJpaApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(AccessingDataJpaApplication.class, args);
+
     }
+
+
 
 }
 
