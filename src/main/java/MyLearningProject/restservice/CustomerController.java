@@ -8,9 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-//import sun.security.provider.SecureRandom;
 
-//import java.security.MessageDigest;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -20,11 +18,6 @@ import java.security.*;
 @Controller
 public class CustomerController {
 
-    /*SecureRandom r = new SecureRandom();
-    byte[] salt = new byte[16];
-    r.nextBytes(salt);
-    MessageDigest md = MessageDigest.getInstance("SHA-512");
-    md.update(salt);*/
 
     private static int workload = 12;
 
@@ -150,16 +143,6 @@ public class CustomerController {
         }
 
 
-        ///// hashing ////
-        /*SecureRandom r = new SecureRandom();
-        byte[] salt = new byte[16];
-        r.nextBytes(salt);
-        MessageDigest md = MessageDigest.getInstance("SHA-512");
-        md.update(salt);
-        customer.setPwd(md.digest(password.getBytes(StandardCharsets.UTF_8)));*/
-
-        ///**************************************///////
-
         String salt = BCrypt.gensalt(workload);
         String pwd = BCrypt.hashpw(password, salt);
         customer.setPwd(pwd);
@@ -197,6 +180,16 @@ public class CustomerController {
         return "new_customer";
 
     }*/
+
+    ///// hashing ////
+        /*SecureRandom r = new SecureRandom();
+        byte[] salt = new byte[16];
+        r.nextBytes(salt);
+        MessageDigest md = MessageDigest.getInstance("SHA-512");
+        md.update(salt);
+        customer.setPwd(md.digest(password.getBytes(StandardCharsets.UTF_8)));*/
+
+    ///**************************************///////
 
 
 
