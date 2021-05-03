@@ -13,16 +13,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
 
-       /* http
-                .authorizeRequests()
-                //.antMatchers("/").permitAll()
-                //.anyRequest().authenticated()
+        http.authorizeRequests()
+                .antMatchers("/").permitAll()
                 .and()
                 .formLogin()
-                .loginPage("/loginPage")
-                .permitAll(); */
+                .loginPage("/login").permitAll()
+                .successForwardUrl("/chat")
+                .defaultSuccessUrl("/chat", true)
+                .and()
+                .logout()
+                .permitAll()
+                .and().cors().and().csrf().disable();
+
+        http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
 
 
     }

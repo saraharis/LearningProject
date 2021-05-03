@@ -21,6 +21,7 @@ public class Customer {
     String pwd;
 
 
+
     protected Customer() {};
 
     public Customer(String firstName, String secondName){
@@ -78,4 +79,6 @@ public class Customer {
     public void setPwd(String pwd) {
         this.pwd = pwd;
     }
+
+
 }

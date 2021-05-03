@@ -21,9 +21,6 @@ public class CustomerController {
 
     private static int workload = 12;
 
-    public static boolean loggedIn = false;
-    //public static boolean loggedIn = true;
-
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -46,76 +43,53 @@ public class CustomerController {
 
 
 
-    @GetMapping("/")
-    public String viewFirstPage(Model model) {
+    @GetMapping("/login")
+    public String viewLoginPage(Model model) {
         //model.addAttribute("customers", customerRepository.findAll());
-        loggedIn = false;
+        //loggedIn = false;
         //loggedIn = true;
         return "login";
     }
 
+    @GetMapping("/")
+    public String viewFirstPage(Model model) {
+        return "login";
+    }
+
+
     @PostMapping("/loginPage")
-    public String loginPage(Model model, @ModelAttribute("firstName") String firstName, @ModelAttribute("password") String password) throws ExecutionException, NoSuchAlgorithmException {
+    public String loginPage(@ModelAttribute("firstName") String firstName, @ModelAttribute("password") String password) throws ExecutionException, NoSuchAlgorithmException {
 
         Customer customer = new Customer();
-        model.addAttribute("customer", customer);
 
-        List<Customer> currentUsernameList = customerRepository.findByFirstName(firstName);
 
         if ((firstName.isEmpty()) || (password.isEmpty())){
             System.out.println("incomplete name or password");
             return "login";
         }
 
-
-        if (currentUsernameList.isEmpty()){
+        customer = customerRepository.findByFirstName(firstName);
+        if (customer == null){
             System.out.println("user not found");
             return "sign_up_page";
         }
 
-
-        for( Customer user : currentUsernameList ){
-
-            if (password.equals(user.getPassword())){
-                loggedIn = true;
-                return "chat";
-            }
+        String pwdStored = customer.getPwd();
 
 
-            String pwdStored = user.getPwd();
+        if(null == pwdStored || !pwdStored.startsWith("$2a$"))
+            throw new java.lang.IllegalArgumentException("Invalid hash provided for comparison");
 
-
-            if(null == pwdStored || !pwdStored.startsWith("$2a$"))
-                throw new java.lang.IllegalArgumentException("Invalid hash provided for comparison");
-
-            if (BCrypt.checkpw(password, pwdStored)){
-                loggedIn = true;
-                return "chat";
-            }
-
-
-
-
-
+        if (BCrypt.checkpw(password, pwdStored)) {
+            return "chat";
         }
-
-        /*System.out.println("found in repo" + customerRepository.findByFirstName(firstName));
-        System.out.println(firstName);
-        System.out.println(password);
-        System.out.println(" incorrect password entered for user " + firstName);*/
 
         return "login";
     }
 
     @GetMapping("/chat")
     public String viewHome(Model model) {
-
-        if (loggedIn){
-            System.out.println(loggedIn);
-            return "chat";
-        }
-
-        return "login";
+        return "chat";
     }
 
     @RequestMapping("/newUser")
@@ -126,7 +100,6 @@ public class CustomerController {
 
     }
 
-
     @RequestMapping("/saveCustomer")
     public String saveCustomer(@ModelAttribute("customer") Customer customer) throws NoSuchAlgorithmException {
 
@@ -135,10 +108,10 @@ public class CustomerController {
 
 
 
-        System.out.println(" New user signer in " + firstName + password);
+        System.out.println(" New user signed up " + firstName + password);
 
         if ((firstName.isEmpty()) || (password.isEmpty())){
-            System.out.println("incomplete name or password");
+            System.out.println("username and password fields are empty");
             return "sign_up_page";
         }
 
@@ -148,14 +121,38 @@ public class CustomerController {
         customer.setPwd(pwd);
 
 
-        //save customer to database
-        loggedIn = true;
-        customerRepository.save(customer);
-        //return "redirect:/";
+
+        try {
+            customerRepository.save(customer);
+
+        } catch (Exception e) {
+            System.out.println("username already exists");
+            return "sign_up_page";
+
+        }
+
         return "save_customer";
 
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /* @RequestMapping("/searchCustomer")
     public String searchCustomer(@ModelAttribute("lastName") String lastName, Model model) throws ExecutionException {
