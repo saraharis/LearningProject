@@ -15,18 +15,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers( "/").permitAll()
                 .and()
                 .formLogin()
-                .loginPage("/login").permitAll()
+                .loginPage("/login")
+                .permitAll()
                 .successForwardUrl("/chat")
-                .defaultSuccessUrl("/chat", true)
+                .defaultSuccessUrl("/chat")
                 .and()
                 .logout()
                 .permitAll()
                 .and().cors().and().csrf().disable();
-
-        http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
 
 
     }

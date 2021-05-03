@@ -58,9 +58,10 @@ public class CustomerController {
 
 
     @PostMapping("/loginPage")
-    public String loginPage(@ModelAttribute("firstName") String firstName, @ModelAttribute("password") String password) throws ExecutionException, NoSuchAlgorithmException {
+    public String loginPage(Model model, @ModelAttribute("firstName") String firstName, @ModelAttribute("password") String password) throws ExecutionException, NoSuchAlgorithmException {
 
         Customer customer = new Customer();
+        model.addAttribute("customer", customer);
 
 
         if ((firstName.isEmpty()) || (password.isEmpty())){
@@ -87,10 +88,10 @@ public class CustomerController {
         return "login";
     }
 
-    @GetMapping("/chat")
-    public String viewHome(Model model) {
+   /* @GetMapping("/chat")
+    public String viewHome() {
         return "chat";
-    }
+    }*/
 
     @RequestMapping("/newUser")
     public String registerUser(Model model){
@@ -131,7 +132,7 @@ public class CustomerController {
 
         }
 
-        return "save_customer";
+        return "chat";
 
 
     }
