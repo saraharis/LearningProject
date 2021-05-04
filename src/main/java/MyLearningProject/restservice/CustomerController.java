@@ -82,16 +82,17 @@ public class CustomerController {
             throw new java.lang.IllegalArgumentException("Invalid hash provided for comparison");
 
         if (BCrypt.checkpw(password, pwdStored)) {
+            System.out.println("correct password, user logged in");
             return "chat";
         }
 
         return "login";
     }
 
-   /* @GetMapping("/chat")
-    public String viewHome() {
+   @GetMapping("/chat")
+    public String viewChat() {
         return "chat";
-    }*/
+    }
 
     @RequestMapping("/newUser")
     public String registerUser(Model model){
