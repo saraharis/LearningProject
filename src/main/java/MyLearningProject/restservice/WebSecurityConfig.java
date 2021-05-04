@@ -36,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/chat", true);*/
 
         http.authorizeRequests()
-                .antMatchers( "/newUser").permitAll()
+                .antMatchers( "/newUser", "/loginPage", "/saveCustomer").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin()
                 .loginPage("/login").permitAll();
