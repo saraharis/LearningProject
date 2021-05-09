@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cropprops" )
+@Table(name = "cropprops1" )
 
 public class Crop {
     @Id
