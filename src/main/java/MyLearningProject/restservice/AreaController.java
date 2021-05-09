@@ -99,7 +99,8 @@ public class AreaController {
         //Getting the connection
 
         String mysqlUrl = "jdbc:mysql://localhost/pincodes";
-        Connection con = DriverManager.getConnection(mysqlUrl, "root", "hello123");
+        //Connection con = DriverManager.getConnection(mysqlUrl, "root", "hello123");
+        Connection con = DriverManager.getConnection(mysqlUrl, "newuser", "password");
         System.out.println("Connection established......");
         //Creating the Statement object
         Statement stmt = con.createStatement();
