@@ -144,7 +144,7 @@ public class AreaController {
 
                 //System.out.println("this crop is possible " + crop.getCropName() + "crop ID" + crop.getId());
 
-                if ((cropSeason.equals("s")) || (cropSeason.contains("a") )){
+                if ((cropSeason.contains("s")) || (cropSeason.contains("a") )){
                     System.out.println("this crop is possible " + crop.getCropName() + "crop ID " + crop.getId());
                  imageMap.put(crop.getCropName(), crop.getCropName().concat(".jpg"));
                 }
