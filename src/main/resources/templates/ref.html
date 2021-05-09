@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th ="https://www.thymeleaf.org">
+<!html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Garden Commune</title>
+
+    <!link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+
+    <link href="css/styles1.css" rel="stylesheet" type="text/css">
+
+
+    <!meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<header>
+    <img src="" th:src = "@{/img/logo1.png}" alt="Creative inc. logo" class="logo">
+    <nav>
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="home-hero parallax--bg">
+        <div class="container">
+            <h1 class="title parallax--box">Making sustainability easier <span> for cconscious consumers</span>
+            </h1>
+            <a href="" class="button button-accent">Check your pincode</a>
+        </div>
+        <a href = ""  type="button" class = "button button-accent"> Go </a>
+</section>
+
+<section class="portfolio">
+    <h1>Blog Posts</h1>
+
+    <!-- portfolio item 01 -->
+    <figure class="port-item">
+        <img src="img/post1.jpg" alt="portfolio item">
+        <figcaption class="port-desc">
+            <p>Project title</p>
+            <a href="" class="button button-accent button-small">Read More</a>
+        </figcaption>
+    </figure>
+
+    <!-- portfolio item 01 -->
+    <figure class="port-item">
+        <img src="img/post2.jpg" alt="portfolio item">
+        <figcaption class="port-desc">
+            <p>Project title</p>
+            <a href="" class="button button-accent button-small">Read More</a>
+        </figcaption>
+    </figure>
+
+    <!-- portfolio item 01 -->
+    <figure class="port-item">
+        <img src="img/post3.jpg" alt="portfolio item">
+        <figcaption class="port-desc">
+            <p>Project title</p>
+            <a href="" class="button button-accent button-small">Read More</a>
+        </figcaption>
+    </figure>
+
+    <!-- portfolio item 01 -->
+    <figure class="port-item">
+        <img src="img/post4.jpg" alt="portfolio item">
+        <figcaption class="port-desc">
+            <p>Project title</p>
+            <a href="" class="button button-accent button-small">Read More</a>
+        </figcaption>
+    </figure>
+
+
+</section>
+
+<div class = "container">
+    <a th:href = "@{/router}">
+        <button type="button" onclick = "alert('clicked!')" class="btn btn-secondary"> Enter </button>
+    </a>
+
+    <form action = "#" th:action = "@{/router}" method = "GET">
+
+        <div class="form-group">
+            <label> Enter Pincode </label>
+            <input type="text" class="form-control" placeholder="Last Name" name = "lastName">
+        </div>
+
+    </form>
+
+    <h1> Customer Info </h1>
+    <table border = "1" class = "table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th> First Name</th>
+            <th> Last Name</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="n: ${customers}">
+            <td th:text="${n.firstName}"></td>
+            <td th:text="${n.lastName}"></td>
+
+
+        </tr>
+        </tbody>
+    </table>
+
+    <p> Hey there </p>
+    <p> testing testing </p>
+
+    <ul class = "mylist">
+        <li id = "item-1"> Item 1</li>
+        <li id = "iten-2">Item 2 </li>
+
+    </ul>
+
+    <ul class = "mylist">
+        <li id = "item-4"> Item 4 </li>
+        <li id = "item-7"> Item 7 </li>
+    </ul>
+
+    <img src = "test.jpg" alt = "sorry cant load" height = "132" widht = "100">
+
+    <footer>
+        <a id="back-to-top" href = "#"> Top </a>
+    </footer>
+
+
+    <script src="script.js">
+
+    </script>
+
+    <script src="js/parallax.js"></script>
+
+</div>
+
+
+
+
+</body>
+</html>
+
+

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Garden</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <link href="styles1.css" th:href = "@{/css/test1.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class = "container">
+
+    <table border = "1" class = "table table-striped table-responsive-md">
+        <thead>
+        <tr>
+
+            <th> Crops</th>
+
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <h1> Plants you can sow now! </h1>
+        <section th:each= "crop: ${crops_possible}" class="portfolio">
+
+            <figure class="port-item">
+                <img src="" th:src = "@{/img/${crop.getCropName()}.jpg}" alt="portfolio item">
+
+                <figcaption class="port-desc">
+                    <p>Project title</p>
+                    <a href="" class="button button-accent button-small">Read More</a>
+                </figcaption>
+            </figure>
+
+
+        </section>
+
+        <section th:each= "crop: ${crops_possible}" class="portfolio">
+
+            <figure class="port-item">
+
+                <img id = "dynamicImage" src="img/post1.jpg" th:src = "@{/img/p3.jpg}" alt="item">
+                <figcaption class="port-desc">
+                    <p th:text="${crop.getCropName()}" > </p>
+
+                    <a href="" class="button button-accent button-small">Read More</a>
+                </figcaption>
+            </figure>
+
+        </section>
+
+        <section th:each= "crop: ${crops_possible}" class="portfolio">
+
+            <figure class="port-item">
+                <img id = "dynamicImage" src="" alt="item">
+                <figcaption class="port-desc">
+                    <p id = "dynamicCropName" th:text=""> </p>
+                    <a href="" class="button button-accent button-small">Read More</a>
+                </figcaption>
+            </figure>
+
+        </section>
+            <script>
+            var cnt;
+
+            for(cnt = 0; cnt<3; cnt++){
+
+            var img = document.getElementById('dynamicImage');
+            img.src = "img/post3.jpg"}
+            </script>
+
+        <tr th:each="crop: ${crops_possible}">
+
+            <td th:text="${crop.getCropName()}"></td>
+
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html xmlns:th ="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Garden Commune</title>
+    <link href="" th:href = "@{/css/test1.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<header>
+    <img src="" th:src = "@{/img/logo1.png}"  alt="Creative inc. logo" class="logo" height = "200" width = "100">
+    <nav>
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">Services</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="home-hero" th:style="'background: url(/img/p1.jpg) no-repeat center center fixed;'" >
+        <div class="container"  >
+
+
+            <h1 class="title">Making sustainability easier <span> for conscious consumers</span>
+            </h1>
+            <h3> Enter pincode to get detailed garden profile... </h3>
+            <form class = "form-inline" action = "#" th:action = "@{/router2}" method = "GET">
+
+                    <input type="text" class="form-control" placeholder="Pincode" name = "pincode">
+
+            </form>
+
+        </div>
+
+</section>
+
+<section class="portfolio">
+    <h1>Blog Posts</h1>
+
+    <!-- portfolio item 01 -->
+    <figure class="port-item">
+        <img src="" th:src = "@{/img/p1.jpg}" alt="portfolio item">
+        <figcaption class="port-desc">
+            <p>Project title</p>
+            <a href="" class="button button-accent button-small">Read More</a>
+        </figcaption>
+    </figure>
+
+    <!-- portfolio item 01 -->
+    <figure class="port-item">
+        <img src="" th:src = "@{/img/p2.jpg}" alt="portfolio item">
+        <figcaption class="port-desc">
+            <p>Project title</p>
+            <a href="" class="button button-accent button-small">Read More</a>
+        </figcaption>
+    </figure>
+
+    <!-- portfolio item 01 -->
+    <figure class="port-item">
+        <img src="" th:src = "@{/img/p3.jpg}" alt="portfolio item">
+        <figcaption class="port-desc">
+            <p>Project title</p>
+            <a href="" class="button button-accent button-small">Read More</a>
+        </figcaption>
+    </figure>
+
+    <!-- portfolio item 01 -->
+    <figure class="port-item">
+        <img src="" th:src = "@{/img/p4.jpg}" alt="portfolio item">
+        <figcaption class="port-desc">
+            <p>Project title</p>
+            <a href="" class="button button-accent button-small">Read More</a>
+        </figcaption>
+    </figure>
+
+
+</section>
+
+<div class = "container">
+
+    <script src="script.js">
+
+    </script>
+
+    <script src="js/parallax.js"></script>
+
+</div>
+
+
+
+
+</body>
+</html>
+
+

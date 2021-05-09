@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th ="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Garden</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class = "container">
+    <h1> MyLearningProject.restservice.Area Info </h1>
+    <table border = "1" class = "table table-striped table-responsive-md">
+        <thead>
+        <tr>
+
+            <th> District</th>
+            <th> N </th>
+            <th> P </th>
+            <th> K </th>
+            <th> pH </th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:object="${d}">
+
+            <td th:text="${d.district}"></td>
+            <td th:text="${d.N}"></td>
+            <td th:text="${d.P}"></td>
+            <td th:text="${d.K}"></td>
+            <td th:text="${d.pH}"></td>
+
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

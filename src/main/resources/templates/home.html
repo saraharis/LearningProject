@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th ="https://www.thymeleaf.org">
+<!html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer GET</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<div class = "container-my-2">
+    <a th:href = "@{/router}">
+        <button type="button" class="btn btn-secondary"> Enter </button>
+    </a>
+
+    <form action = "#" th:action = "@{/router}" method = "GET">
+
+        <div class="form-group">
+            <label> Enter Pincode </label>
+            <input type="text" class="form-control" placeholder="6 digit Pin Code" name = "pincode">
+        </div>
+
+    </form>
+
+
+</div>
+</body>
+</html>
+
+
