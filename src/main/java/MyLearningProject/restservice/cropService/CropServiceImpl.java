@@ -48,11 +48,15 @@ public class CropServiceImpl implements CropService {
             Crop crop = cropRepository.findById(cropIter);
             String cropSeason = crop.getSeason();
 
+            System.out.println("print2  " + cropIter);
+
 
             if ((crop.getN().isEmpty()) || (crop.getP().isEmpty()) || (crop.getK().isEmpty())) {
                 if ((cropSeason.contains(season)) || (cropSeason.contains("a"))) {
                     //System.out.println("this crop is possible " + crop.getCropName() + "crop ID " + crop.getId());
                     imageMap.put(crop.getCropName(), crop.getCropName().concat(".jpg"));
+
+                    System.out.println("print3  " + cropIter);
                 }
 
             } else {
@@ -63,6 +67,8 @@ public class CropServiceImpl implements CropService {
                     if (crop.getSeason().contains(season) || crop.getSeason().contains("a")) {
                         //System.out.println("this crop is possible " + crop.getCropName() + "crop ID " + crop.getId());
                         imageMap.put(crop.getCropName(), crop.getCropName().concat(".jpg"));
+
+                        System.out.println("print4  " + cropIter);
                     }
 
 
