@@ -52,8 +52,10 @@ public class CropServiceImpl implements CropService {
 
 
             if ((crop.getN().isEmpty()) || (crop.getP().isEmpty()) || (crop.getK().isEmpty())) {
+                System.out.println("print7  " + crop.getN());
                 if ((cropSeason.contains(season)) || (cropSeason.contains("a"))) {
                     //System.out.println("this crop is possible " + crop.getCropName() + "crop ID " + crop.getId());
+                    System.out.println("print7  " + crop.getN());
                     imageMap.put(crop.getCropName(), crop.getCropName().concat(".jpg"));
 
                     System.out.println("print3  " + cropIter);
