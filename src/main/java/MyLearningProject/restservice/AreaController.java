@@ -94,7 +94,7 @@ public class AreaController {
             //Long resultVal = climateService.findTempByLocation(region.getLat(), region.getLon(), 1, "T2M");
             //System.out.println("resultVal = " + resultVal);
 
-            // TODO: add a model which has the season code also
+
 
             return "crops";
 
