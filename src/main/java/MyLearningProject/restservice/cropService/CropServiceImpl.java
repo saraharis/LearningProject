@@ -52,7 +52,7 @@ public class CropServiceImpl implements CropService {
 
 
             if ((crop.getN().isEmpty()) || (crop.getP().isEmpty()) || (crop.getK().isEmpty())) {
-                System.out.println("print7  " + crop.getN());
+                System.out.println("print8  " + crop.getN());
                 if ((cropSeason.contains(season)) || (cropSeason.contains("a"))) {
                     //System.out.println("this crop is possible " + crop.getCropName() + "crop ID " + crop.getId());
                     System.out.println("print7  " + crop.getN());
@@ -66,9 +66,13 @@ public class CropServiceImpl implements CropService {
                 if ((Integer.parseInt(ds.getN()) >= Integer.parseInt(crop.getN())) && (Integer.parseInt(ds.getK()) >= Integer.parseInt(crop.getK())) &&
                         (Integer.parseInt(ds.getP()) >= Integer.parseInt(crop.getP()))) {
 
+                    System.out.println("print9  " + crop.getN());
+
                     if (crop.getSeason().contains(season) || crop.getSeason().contains("a")) {
                         //System.out.println("this crop is possible " + crop.getCropName() + "crop ID " + crop.getId());
+                        System.out.println("print10  " + crop.getN());
                         imageMap.put(crop.getCropName(), crop.getCropName().concat(".jpg"));
+
 
                         System.out.println("print4  " + cropIter);
                     }
