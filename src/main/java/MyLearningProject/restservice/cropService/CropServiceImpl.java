@@ -42,6 +42,8 @@ public class CropServiceImpl implements CropService {
 
         for (int cropIter = 1; cropIter <= length; cropIter++) {
 
+            System.out.println(cropIter);
+
 
             Crop crop = cropRepository.findById(cropIter);
             String cropSeason = crop.getSeason();
