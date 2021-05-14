@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:color="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Garden</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <link href="test1.css" th:href = "" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div class = "container">
+
+
+    <h1 class = "title"> Plants you can sow now! <span> based on your region's soil, microclimate and current season </span></h1>
+
+
+
+    <div class = "band">
+
+        <a href="" class="card">
+
+        <section th:each= "crop: ${hm.keySet()}" >
+
+
+            <div class="item-1">
+
+            <figure class="port-item">
+
+                <div class="thumb" style="color:green"></div>
+
+                <!img src="img/post1.jpg" th:src = "@{/images/{image}(image = ${hm.get(crop)})}" alt="item">
+                <figcaption class="port-desc">
+
+                    <p th:text = "${crop}" > </p>
+                    <a href="" class="button button-accent button-small">Read More</a>
+                </figcaption>
+            </figure>
+            </div>
+
+        </section>
+
+        </a>
+
+    </div>
+
+
+
+</div>
+
+<span id="soilData" style="display: none;" th:text="${district}"></span>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type = "text/javascript" th:src = "@{/script/soilCharts.js}">
+
+</script>
+
+<br>
+<br>
+
+<!--Div that will hold the pie chart-->
+
+<div class = portfolio>
+    <div class = "port-item" id = "soilChart"></div>
+</div>
+
+
+</body>
+</html>

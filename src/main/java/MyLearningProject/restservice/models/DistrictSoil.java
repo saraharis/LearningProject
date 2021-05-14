@@ -1,4 +1,4 @@
-package MyLearningProject.restservice;
+package MyLearningProject.restservice.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

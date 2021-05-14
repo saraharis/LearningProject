@@ -1,9 +1,9 @@
-package MyLearningProject.restservice;
+package MyLearningProject.restservice.models;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "demo2")
+@Table(name = "pins")
 public class Area {
 
     @Id
@@ -13,13 +13,17 @@ public class Area {
     String pincode;
     String district;
     String state;
+    Long lat;
+    Long lon;
 
     protected Area() {};
 
-    public Area(String pincode, String district, String state){
+    public Area(String pincode, String district, String state, Long lat, Long lon){
         this.pincode = pincode;
         this.district = district;
         this.state = state;
+        this.lat = lat;
+        this.lon = lon;
 
     }
 
@@ -45,5 +49,22 @@ public class Area {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+
+    public Long getLat() {
+        return lat;
+    }
+
+    public void setLat(Long lat) {
+        this.lat = lat;
+    }
+
+    public Long getLon() {
+        return lon;
+    }
+
+    public void setLon(Long lon) {
+        this.lon = lon;
     }
 }

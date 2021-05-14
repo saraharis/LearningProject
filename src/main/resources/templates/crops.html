@@ -10,53 +10,49 @@
     <link href="" th:href = "@{/css/test1.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
+
 <div class = "container">
 
-    <table border = "1" class = "table table-striped table-responsive-md">
-        <thead>
-        <tr>
 
-            <th> Crops Suitable for Soil </th>
-
-
-        </tr>
-        </thead>
-
-        <tbody>
         <h1 class = "title"> Plants you can sow now! <span> based on your region's soil, microclimate and current season </span></h1>
 
+        <div class = "portfolio">
 
-        <section th:each= "crop: ${hm.keySet()}" class="portfolio">
+            <section th:each= "crop: ${hm.keySet()}" >
 
-            <figure class="port-item">
+                <figure class="port-item">
 
-                <img src="img/post1.jpg" th:src = "@{/images/{image}(image = ${hm.get(crop)})}" alt="item">
-                <figcaption class="port-desc">
+                    <img src="img/post1.jpg" th:src = "@{/images/{image}(image = ${hm.get(crop)})}" alt="item">
+                    <figcaption class="port-desc">
 
-                    <p th:text = "${crop}" > </p>
-                    <a href="" class="button button-accent button-small">Read More</a>
-                </figcaption>
-            </figure>
+                        <p th:text = "${crop}" > </p>
+                        <a href="" class="button button-accent button-small">Read More</a>
+                    </figcaption>
+                </figure>
 
-        </section>
+            </section>
 
-        <br>
-        <br>
-
-        <section class = "container">
+        </div>
 
 
-            <tr th:each="crop: ${crops_possible}">
-            <td th:text="${crop.getCropName()}"></td>
-
-
-        </tr>
-
-        </section>
-
-        </tbody>
-    </table>
 </div>
+
+<span id="soilData" style="display: none;" th:text="${district}"></span>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type = "text/javascript" th:src = "@{/script/soilCharts.js}">
+
+</script>
+
+<br>
+<br>
+
+<!--Div that will hold the pie chart-->
+
+<div>
+    <div class = "port-item" id = "soilChart"></div>
+</div>
+
 
 </body>
 </html>

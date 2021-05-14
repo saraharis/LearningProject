@@ -26,9 +26,9 @@
             <h1 class="title">Making sustainability easier <span> for conscious consumers</span>
             </h1>
             <h3> Enter pincode to get detailed garden profile... </h3>
-            <form class = "form-inline" action = "#" th:action = "@{/router2}" method = "GET">
+            <form class = "form-inline" action = "#" th:action = "@{/router2}" method = "GET" onsubmit = "validate()" >
 
-                    <input type="text" class="form-control" placeholder="Pincode" name = "pincode">
+                    <input id = "pincode" type="text" class="form-control" placeholder="Pincode" name = "pincode"/>
 
             </form>
 
@@ -97,14 +97,13 @@
 
 <div class = "container">
 
-    <script src="script.js">
-
-    </script>
+    <script src="script.js"></script>
 
     <script src="js/parallax.js"></script>
 
 </div>
 
+<script type = "text/javascript" src = "" th:src = "@{/script/invalid_pincode.js}"></script>
 
 
 

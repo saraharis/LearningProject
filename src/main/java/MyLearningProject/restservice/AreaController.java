@@ -1,30 +1,46 @@
 package MyLearningProject.restservice;
 
-import org.apache.logging.log4j.message.StringFormattedMessage;
+import MyLearningProject.restservice.climateService.ClimateService;
+import MyLearningProject.restservice.climateService.ClimateServiceImpl;
+import MyLearningProject.restservice.cropService.CropService;
+import MyLearningProject.restservice.cropService.CropServiceImpl;
+import MyLearningProject.restservice.customerService.CustomerService;
+import MyLearningProject.restservice.customerService.CustomerServiceImpl;
+import MyLearningProject.restservice.models.Area;
+import MyLearningProject.restservice.models.Customer;
+import MyLearningProject.restservice.models.DistrictSoil;
+import MyLearningProject.restservice.pincodeService.PincodeService;
+import MyLearningProject.restservice.pincodeService.PincodeServiceImpl;
+import MyLearningProject.restservice.soilService.SoilService;
+import MyLearningProject.restservice.soilService.SoilServiceImpl;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.lang.reflect.Field;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
 
 @Controller
 
 public class AreaController {
 
-    //@Autowired
-    //MyLearningProject.restservice.PincodeService pincodeService = new MyLearningProject.restservice.PincodeServiceImpl();
 
-    //@Autowired
+
+    @RequestMapping("/")
+    public String viewIndexPage(Model model) {
+        return "zz";
+    }
+
+
+    @Autowired
     //private PincodeService pincodeService;
+    PincodeService pincodeService = new PincodeServiceImpl();
+
     //enum soilProps {N, P, K}
+
 
     String currSeason = new String("s");
     String all = new String("a");
@@ -34,12 +50,96 @@ public class AreaController {
     @Autowired
     private PincodeRepository pincodeRepository;
 
-    @RequestMapping("/")
-    public String viewIndexPage(Model model) {
-        return "zz";
+    @Autowired
+    private CropRepository cropRepository;
+
+    @Autowired
+    //private CropService cropService;
+    CropService cropService = new CropServiceImpl();
+
+    @Autowired
+    SoilService soilService = new SoilServiceImpl();
+
+    @Autowired
+    ClimateService climateService = new ClimateServiceImpl();
+
+    @Autowired
+    CustomerService customerService = new CustomerServiceImpl();
+
+    @RequestMapping("/router2")
+    public String viewRouter2(Model model, Model model2, @ModelAttribute("pincode") String pincode) throws SQLException {
+
+        //Area region = pincodeRepository.findByPincode(pincode);
+
+        if (pincodeService.isValidPincode(pincode) == false){
+            System.out.println("invalid pincode entered");
+            return "zz";
+        }
+
+        try {
+            Area region = pincodeService.getArea(pincode);
+            String district = region.getDistrict();
+            DistrictSoil ds = soilService.findByDistrict(district.toLowerCase());
+
+            System.out.println( " District being searched is " + district.toLowerCase());
+
+            HashMap<String, String> imageMap2 = cropService.findSuitableCrops(ds, currSeason);
+            //model.addAttribute("crops_possible", cropsPossible);
+
+            String soilJson = new Gson().toJson(ds);
+            model.addAttribute("district", soilJson);
+            model2.addAttribute("hm", imageMap2);
+
+
+            //Long resultVal = climateService.findTempByLocation(region.getLat(), region.getLon(), 1, "T2M");
+            //System.out.println("resultVal = " + resultVal);
+
+            // TODO: add a model which has the season code also
+
+            return "crops";
+
+        } catch (Exception e){
+            System.out.println("unavailable pincode");
+            Customer customer = new Customer();
+            model.addAttribute("customer", customer);
+            return "pincode_not_available";
+        }
+
+
     }
 
-    @RequestMapping("/list")
+    @RequestMapping("/save_customer")
+    public String saveCustomer(@ModelAttribute("customer") Customer customer){
+        customerService.saveCustomer(customer);
+
+        return "thanks";
+
+    }
+
+    @RequestMapping("/test")
+    public String test(Model model){
+        DistrictSoil ds = soilService.findByDistrict("ernakulam");
+        //model.addAttribute("district", new Gson().toJson(ds));
+        String jobj = new Gson().toJson(ds);
+        model.addAttribute("district", jobj);
+        System.out.println(jobj);
+        return "test";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+        @RequestMapping("/list")
     public String viewList(Model model) {
 
         //List<Area> listAreas = pincodeService.getAllAreas();
@@ -60,7 +160,6 @@ public class AreaController {
     public String viewDistrict(Model model) {
         model.addAttribute("listDistricts", districtSoilRepository.findAll());
         System.out.println("hey controller 2");
-
         return "d";
     }
 
@@ -75,121 +174,12 @@ public class AreaController {
 
         model.addAttribute("d", ds);
 
-
         return "d_new";
-
     }
-
-    @Autowired
-    private CropRepository cropRepository;
-
-    @RequestMapping("/router2")
-    public String viewRouter2(Model model, Model model2, @ModelAttribute("pincode") String pincode) throws SQLException {
-        //String pin = "686632";
-        //System.out.println(pincodeRepository.findByPincode(pin));
-        Area region = pincodeRepository.findByPincode(pincode);
-        String district = region.getDistrict();
-        DistrictSoil ds = districtSoilRepository.findByDistrict(district.toLowerCase());
-        System.out.println( " District being searched" + district.toLowerCase());
-
-        //logic for getting suitable plants
-
-        ///Registering the Driver
-        DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-        //Getting the connection
-
-        String mysqlUrl = "jdbc:mysql://localhost/pincodes";
-        //Connection con = DriverManager.getConnection(mysqlUrl, "root", "hello123");
-        Connection con = DriverManager.getConnection(mysqlUrl, "newuser", "password");
-        System.out.println("Connection established......");
-        //Creating the Statement object
-        Statement stmt = con.createStatement();
-
-        String query = "select count(*) from cropprops";
-        //Executing the query
-        ResultSet rs = stmt.executeQuery(query);
-        //Retrieving the result
-        rs.next();
-
-        int length = rs.getInt(1);
-
-        //hashmap for images of vegetables
-
-        HashMap<String, String> imageMap = new HashMap<String, String>();
-
-
-        ArrayList<Crop> cropsPossible = new ArrayList<>();
+     */
 
 
 
-
-        for (int cropIter = 1; cropIter <= length; cropIter++) {
-
-
-
-
-            Crop crop = cropRepository.findById(cropIter);
-            String cropSeason = crop.getSeason();
-
-
-
-
-            if ((crop.getN().isEmpty()) || (crop.getP().isEmpty()) || (crop.getK().isEmpty())) {
-
-                cropsPossible.add(crop);
-                //imageMap.put(crop.getCropName(), crop.getCropName().concat(".jpg"));
-
-                System.out.println( crop.getCropName() + "crop season is " + cropSeason);
-                System.out.println("crop season is equal to a" + (cropSeason.toString().contains("a")));
-
-                //System.out.println("this crop is possible " + crop.getCropName() + "crop ID" + crop.getId());
-
-                if ((cropSeason.contains("s")) || (cropSeason.contains("a") )){
-                    System.out.println("this crop is possible " + crop.getCropName() + "crop ID " + crop.getId());
-                 imageMap.put(crop.getCropName(), crop.getCropName().concat(".jpg"));
-                }
-
-            }
-
-            else{
-
-
-
-                if ((Integer.parseInt(ds.getN()) >= Integer.parseInt(crop.getN())) && (Integer.parseInt(ds.getK()) >= Integer.parseInt(crop.getK())) &&
-                        (Integer.parseInt(ds.getP()) >= Integer.parseInt(crop.getP()))) {
-                    System.out.println( crop.getCropName() + " crop season is " + crop.getSeason());
-
-                    //System.out.println("this crop is possible " + crop.getCropName() + "crop ID" + crop.getId());
-
-
-                    cropsPossible.add(crop);
-                    //imageMap.put(crop.getCropName(), crop.getCropName().concat(".jpg"));
-
-                    if (crop.getSeason().contains(currSeason) || crop.getSeason().contains("a") ){
-                        System.out.println("this crop is possible " + crop.getCropName() + "crop ID " + crop.getId());
-                        imageMap.put(crop.getCropName(), crop.getCropName().concat(".jpg"));}
-
-
-                }
-            }
-
-            // Check the sunlight now
-
-
-
-
-
-        }
-
-        model.addAttribute("crops_possible", cropsPossible);
-        model2.addAttribute("hm", imageMap);
-
-
-
-        return "crops";
-
-
-    }
 
 }
 

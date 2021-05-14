@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Garden Commune</title>
+    <link href="" th:href = "@{/css/test1.css}" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<header>
+    <img src="" th:src = "@{/img/logoo.png}"  alt="logo" class="logo" height = "200" width = "100">
+    <nav>
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">Services</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="home-hero" th:style="'background: url(/img/sorry.jpg) no-repeat center center fixed;'" >
+    <div class="container"  >
+
+
+        <h1 class="title"> Sorry! We haven't covered your area yet ༼ つ ಥ_ಥ ༽つ<span> Please feel free to leave your email ID so that we can inform you once we do! :)  </span>
+        </h1>
+        <h3> No Spam Fam! :D </h3>
+        <form class = "form-inline" action = "#" th:action = "@{/save_customer}"  th:object = "${customer}" method = "POST">
+
+            <input id = "email" type="text" th:field = "*{email}" class="form-control" placeholder="abc@example.com">
+
+        </form>
+
+    </div>
+
+</section>
+
+
+</body>
+</html>

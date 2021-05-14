@@ -21,6 +21,7 @@ img {
 	width: 95%;
 	max-width: 70em;
 	margin: 0 auto;
+	position: relative;
 }
 
 @media (min-width:60rem) {
@@ -169,6 +170,7 @@ nav a:focus {
 .port-item {
 	margin: 1;
 	position: relative;
+
 }
 
 .port-item img {
@@ -184,6 +186,11 @@ nav a:focus {
 	color: white;
 	background: rgba(0,0,0,.6);
 	padding-bottom: 2em;
+}
+
+.chart{
+  position: static;
+  bottom: 10px;
 }
 
 @media (min-width: 37rem) {

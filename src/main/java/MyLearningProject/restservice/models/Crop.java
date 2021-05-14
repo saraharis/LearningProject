@@ -1,11 +1,11 @@
-package MyLearningProject.restservice;
+package MyLearningProject.restservice.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cropprops1" )
+@Table(name = "cropprops" )
 
 public class Crop {
     @Id
