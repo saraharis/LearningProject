@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th ="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Garden</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="../static/css/stylesheet.css" th:href = "@{/css/styletest.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body style="background-color: black;" >
+
+<header>
+    <img src="" th:src = "@{/img/logoo.png}"  alt="logo" class="logo" height = "200" width = "100">
+    <nav>
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="" th:href = "@{about}">About</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class = "crop-hero" th:style = "'background-image:url('+ @{/img/crop-hero.jpg} +');'">
+    <h1 class="title"> Your Garden Profile <span></span></h1>
+</section>
+
+<div class = "container">
+    <section class = "portfolio">
+        <div class = "chart-item" id = "nutrientChart"></div>
+
+        <div class="chart-item">
+            <div class="chart-container">
+                <h2 th:text = "${tempData} + '°C'"> display temperature </h2>
+                <p th:text = "'mean monthly temperature for ' + ${month}" > </p>
+            </div>
+        </div>
+        <div class = "chart-item" id = "phChart" ></div>
+    </section>
+</div>
+
+<div style = "clear:both"> </div>
+
+
+<div class = "container">
+    <br>
+    <h2 style = "font-size : 2.2em; color:white;"> Plants suitable for your region </h2>
+    <p style="color:white;"> (based on your region's soil, microclimate and current season) </p>
+
+    <section class = "portfolio">
+
+        <figure th:each= "crop: ${hm.keySet()}" class = "port-item" >
+            <div class = "card">
+
+                <img src="" th:src = "@{/images/{image}(image = ${hm.get(crop)})}" alt="item" >
+                <figcaption class="crop-desc">
+                    <p th:text = "${crop}" > </p>
+                    <a href="" class="button button-accent button-small">Read More</a>
+                </figcaption>
+            </div>
+        </figure>
+    </section>
+    <br>
+</div>
+
+<div class = "chart">
+<br>
+    <p style="color:white;"> Your region is likely to have the following properties </p>
+<br>
+</div>
+
+<span id="soilData" style="display: none;" th:text="${district}"></span>
+<span id = "tempData" style="display: none;" th:text = "${tempData}"></span>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type = "text/javascript" th:src = "@{/script/soilCharts.js}"></script>
+<script type = "text/javascript" th:src = "@{/script/tempChart.js}"></script>
+
+<br>
+<br>
+
+<!--Div that will hold the pie chart-->
+
+
+
+</body>
+</html>

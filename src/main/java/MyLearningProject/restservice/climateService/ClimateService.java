@@ -8,6 +8,6 @@ import java.sql.SQLException;
 
 public interface ClimateService {
 
-    Long findTempByLocation(Long lat, Long lon, int month, String parameter) throws SQLException;
+    Long findTempByLocation(int month, String parameter, String pincode) throws SQLException;
 
 }

@@ -5,29 +5,25 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "district_profile")
+@Table(name = "Ndistrict_profile")
 public class DistrictSoil {
 
     @Id
     String district;
-    String N;
-    String P;
-    String K;
-    String pH;
+    Integer N;
+    Integer P;
+    Integer K;
+    Long pH;
 
     protected DistrictSoil() {};
 
-    public DistrictSoil(String district, String N, String P, String K, String pH){
-
+    public DistrictSoil(String district, Integer n, Integer p, Integer k, Long pH) {
         this.district = district;
-        this.N = N;
-        this.P = P;
-        this.K = K;
+        N = n;
+        P = p;
+        K = k;
         this.pH = pH;
-
-
     }
-
 
     public String getDistrict() {
         return district;
@@ -37,35 +33,37 @@ public class DistrictSoil {
         this.district = district;
     }
 
-    public String getN() {
+    public Integer getN() {
         return N;
     }
 
-    public void setN(String n) {
+    public void setN(Integer n) {
         N = n;
     }
 
-    public String getP() {
+    public Integer getP() {
         return P;
     }
 
-    public void setP(String p) {
+    public void setP(Integer p) {
         P = p;
     }
 
-    public String getK() {
+    public Integer getK() {
         return K;
     }
 
-    public void setK(String k) {
+    public void setK(Integer k) {
         K = k;
     }
 
-    public String getpH() {
+    public Long getpH() {
         return pH;
     }
 
-    public void setpH(String pH) {
+    public void setpH(Long pH) {
         this.pH = pH;
     }
+
+
 }

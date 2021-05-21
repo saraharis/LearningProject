@@ -31,49 +31,6 @@ footer::after {
 }
 
 
-/* Column system
-=================== */
-
-[class^=col-] {
-	width: 100%;
-	margin-top: 1em;
-}
-
-[class^=col-]:first-child {
-	margin-top: 0;
-}
-
-.col-1 {
-	width: 33.333334%;
-	float: left;
-}
-
-
-@media (min-width: 40rem) {
-
-	[class^=col-] {
-		float: left;
-		padding: 0 .5em;
-		margin-top: 0;
-	}
-
-	[class^=col-]:first-child {
-		padding-left: 0;
-	}
-
-	[class^=col-]:last-child {
-		padding-right: 0;
-	}
-
-	.col-3 {
-		width: 50%;
-	}
-
-	.col-1 {
-		width: 16.6666%;
-	}
-}
-
 
 
 
@@ -319,6 +276,32 @@ nav a:focus {
 
 
 }
+/* crop
+==================*/
+.crop-desc{
+	position: absolute;
+	z-index: 100;
+	bottom: 0em;
+	left: 0em;
+	right: 0em;
+	color: white;
+	background: rgba(0,0,0,.6);
+	padding-bottom: 1em;
+}
+.crop-desc p {
+	margin: 0.5em;
+}
+
+@media (min-width: 60rem) {
+
+	.crop-desc {
+		transform: translateY(150%);
+	}
+
+	.port-item:hover .crop-desc {
+		transform: translateY(0%);
+	}
+}
 
 
 
@@ -330,7 +313,7 @@ nav a:focus {
 }
 
 .port-item {
-	margin: 0;
+	margin: 1;
 	position: relative;
 }
 
@@ -362,8 +345,9 @@ nav a:focus {
 
 @media (min-width: 60rem) {
 	.port-item {
-		width: 33.3333334%;
+		/*width: 16.66666667%;*/
 		overflow: hidden;
+		width:16.66666667%;
 	}
 
 	.port-desc {
@@ -394,3 +378,82 @@ footer {
 	text-align: left;
 	padding: 5em 0;
 }
+
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px; /* 5px rounded corners */
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the chart container */
+.chart {
+  padding: 20px 20px;*/
+
+}
+
+
+.crop-hero {
+	/*background-image: url(../img/hero-bg.jpg);*/
+	background:url('+ @{/images/tomato.jpg} +');
+	background-size: cover;
+	background-position: center;
+	padding: 5em 0;
+	color: #FFF;
+}
+
+@media (min-width: 60rem) {
+	.crop-hero {
+		height:50vh;
+		padding-top: 17vh;
+	}
+}
+
+.chart-item{
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 300px;
+  height:400px;
+  margin: 1;
+  position: relative;
+
+
+}
+
+.chart-container {
+  padding: 36px 0px;
+  /*font-size: 1.7rem;*/
+  font-size:40px;
+  color :white;
+
+}
+
+.chart-container p {
+font-size:15px;
+}
+
+@media (min-width: 37rem) {
+	.chart-item {
+		width: 50%;
+		float: left;
+	}
+}
+
+@media (min-width: 60rem) {
+	.chart-item {
+		width: 33.333334%;
+		float: left;
+	}
+}
+
+
+
+
+
+
+

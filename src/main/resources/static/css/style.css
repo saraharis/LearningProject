@@ -160,6 +160,39 @@ nav a:focus {
 /*blog
 ==================*/
 
+/*crops.html
+=====================*/
+.wrapper{
+margin: 3em 0 0;
+}
+
+.crop-item{
+	margin: 1;
+	float:left
+	position:relative;
+	}
+
+.crop-item img{
+display:block;
+}
+
+.crop-desc {
+	position: absolute;
+	z-index: 100;
+	bottom: 0em;
+	left: 0em;
+	right: 0em;
+	color: white;
+	background: rgba(0,0,0,.6);
+	padding-bottom: 2em;
+}
+
+
+.chart{
+  position: static;
+  bottom: 10px;
+}
+
 /* portfolio
 =================== */
 
@@ -170,7 +203,6 @@ nav a:focus {
 .port-item {
 	margin: 1;
 	position: relative;
-
 }
 
 .port-item img {
@@ -188,10 +220,6 @@ nav a:focus {
 	padding-bottom: 2em;
 }
 
-.chart{
-  position: static;
-  bottom: 10px;
-}
 
 @media (min-width: 37rem) {
 	.port-item {

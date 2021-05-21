@@ -3,7 +3,7 @@ package MyLearningProject.restservice.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "climate")
+@Table(name = "Nclimate")
 public class Climate {
 
 @Id

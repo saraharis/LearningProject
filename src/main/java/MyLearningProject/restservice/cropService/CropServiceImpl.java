@@ -1,13 +1,19 @@
 package MyLearningProject.restservice.cropService;
 
 import MyLearningProject.restservice.CropRepository;
+import MyLearningProject.restservice.climateService.ClimateService;
 import MyLearningProject.restservice.models.DistrictSoil;
 import MyLearningProject.restservice.models.Crop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.print.attribute.standard.PDLOverrideSupported;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Component
 
@@ -15,6 +21,122 @@ public class CropServiceImpl implements CropService {
 
     @Autowired
     private CropRepository cropRepository;
+    @Autowired
+    ClimateService climateService;
+
+    @Override
+    public HashMap<String, String> getImageMap(List<Crop> finalCropList){
+
+        HashMap<String, String> imageMap = new HashMap<String, String>();
+
+        for( Crop crop: finalCropList){
+            imageMap.put(crop.getCropName(), crop.getCropName().concat(".jpg"));
+        }
+
+    return imageMap;
+    }
+
+    public List<Crop> findCropsByPh(Long ph){
+        List<Crop>listCropsByPh = new ArrayList<>();
+
+        for(Crop crop: cropRepository.findAll()){
+            if(crop.getPh_min() == 0){
+                listCropsByPh.add(crop);
+                System.out.println("crops for this ph are " + crop.getCropName());
+            }
+            if((ph>= crop.getPh_min()) && (ph<= crop.getPh_max())){
+                listCropsByPh.add(crop);
+                System.out.println("crops for this ph are " + crop.getCropName());
+            }
+        }
+
+        return listCropsByPh;
+    }
+
+
+
+
+    public List<Crop> findCropsByTemp(Long temp){
+
+        List<Crop> listCropsByTemp = new ArrayList<>();
+        for(Crop crop : cropRepository.findAll()){
+
+            if(temp<= crop.getT_max() && temp>= crop.getT_min()){
+                listCropsByTemp.add(crop);
+                System.out.println("crops for this temp are " + crop.getCropName());
+
+            }
+        }
+
+        return listCropsByTemp;
+    }
+    @Override
+
+    public List<Crop> findEmpty() throws SQLException {
+
+        List<Crop> listCropsNull = new ArrayList<>();
+
+        DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+        String mysqlUrl = "jdbc:mysql://localhost/pincodes";
+        Connection con = DriverManager.getConnection(mysqlUrl, "newuser", "password");
+        System.out.println("Connection established......");
+        Statement stmt = con.createStatement();
+        String nullQuery = "select id from ncropprops where 0 in (n,p,k)";
+        System.out.println("error not here");
+        ResultSet rsNull = stmt.executeQuery(nullQuery);
+        rsNull.next();
+
+        while(rsNull.next()){
+            Crop crop = cropRepository.findById(rsNull.getInt("id"));
+            listCropsNull.add(crop);
+            System.out.println("Crop soil null val " + crop.getCropName());
+        }
+
+        con.close();
+        System.out.println("connection closed...");
+
+
+    return listCropsNull;
+    }
+
+    @Override
+    public List<Crop> findCropsBySoil(DistrictSoil ds) throws SQLException {
+
+        List<Crop> listCropsPossibleBySoil = new ArrayList<>();
+
+        for(Crop crop : cropRepository.findAll()){
+
+
+            if (((ds.getN()) >= crop.getN()) && ((ds.getK()) >= (crop.getK())) &&
+                    ((ds.getP()) >= (crop.getP()))) {
+
+                listCropsPossibleBySoil.add(crop);
+                System.out.println("crop possible by soil is " + crop.getCropName());
+            }
+
+
+        }
+
+        return listCropsPossibleBySoil;
+    }
+
+    @Override
+    public List<Crop> findCropsBySeason(String season){
+
+        List<Crop> cropsBySeason = new ArrayList<>();
+        for( Crop crop : cropRepository.findAll()){
+
+            if (crop.getSeason().contains(season) || crop.getSeason().contains("a")) {
+                cropsBySeason.add(crop);
+                System.out.println("crops for this season " + crop.getCropName());
+            }
+
+
+        }
+
+        return cropsBySeason;
+    }
+
 
     @Override
 
@@ -42,39 +164,28 @@ public class CropServiceImpl implements CropService {
 
         for (int cropIter = 1; cropIter <= length; cropIter++) {
 
-            System.out.println(cropIter);
-
-
             Crop crop = cropRepository.findById(cropIter);
             String cropSeason = crop.getSeason();
 
-            System.out.println("print2  " + Integer.parseInt(ds.getN()));
 
 
-            if ((crop.getN().isEmpty()) || (crop.getP().isEmpty()) || (crop.getK().isEmpty())) {
-                System.out.println("print8  " + crop.getN());
+            if ((crop.getN() == 0) || (crop.getP()== 0 ) || (crop.getK() == 0)) {
+
                 if ((cropSeason.contains(season)) || (cropSeason.contains("a"))) {
-                    //System.out.println("this crop is possible " + crop.getCropName() + "crop ID " + crop.getId());
-                    System.out.println("print7  " + crop.getN());
+
                     imageMap.put(crop.getCropName(), crop.getCropName().concat(".jpg"));
 
-                    System.out.println("print3  " + cropIter);
                 }
 
             } else {
 
-                if ((Integer.parseInt(ds.getN()) >= Integer.parseInt(crop.getN())) && (Integer.parseInt(ds.getK()) >= Integer.parseInt(crop.getK())) &&
-                        (Integer.parseInt(ds.getP()) >= Integer.parseInt(crop.getP()))) {
-
-                    System.out.println("print9  " + crop.getN());
+                if (ds.getN() >= crop.getN() && (ds.getK()) >=(crop.getK()) &&
+                        ds.getP() >= crop.getP()) {
 
                     if (crop.getSeason().contains(season) || crop.getSeason().contains("a")) {
-                        //System.out.println("this crop is possible " + crop.getCropName() + "crop ID " + crop.getId());
-                        System.out.println("print10  " + crop.getN());
+
                         imageMap.put(crop.getCropName(), crop.getCropName().concat(".jpg"));
 
-
-                        System.out.println("print4  " + cropIter);
                     }
 
 

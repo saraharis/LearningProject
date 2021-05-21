@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th ="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Garden</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="../static/css/stylesheet.css" th:href = "@{/css/styletest.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body style="background-color: black;" >
+
+<header>
+    <img src="" th:src = "@{/img/logoo.png}"  alt="logo" class="logo" height = "200" width = "100">
+    <nav>
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class = "crop-hero" th:style = "'background-image:url('+ @{/img/about.jpg} +');'">
+</section>
+
+<!-- The Band Section -->
+<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+    <h2 class="w3-wide" style="color:white">Hello there!</h2>
+    <p class="w3-opacity" style="color:white"><i>This is Sara, nice to see you around :)</i></p>
+    <p class="w3-justify" style="color:white">
+
+        So if you are a gardening enthusiast, I hope my page has been of some use to you. I have
+    tried to refer to as many verified data sources and am still building up on it. So if I haven't covered your region yet then don't worry, I will try to
+    reach there asap, meanwhile do read some of the blog posts related to gardening or environmental sustainability in general! </p>
+
+    <br>
+    <p class="w3-justify" style="color:white">
+
+        I have always been an explorer and I love nature at it's purest. During lockdown last year, one of the outlets for all this energy to do something
+    useful and good for the environment ended up with gardening. I've been lucky with an agri-scientist superDad throughout my garden journey but for those
+        who majorly depend on the internet for info about the climate around their region or which plants to sow when, I thought I could help in some way :)
+        </p>
+
+    <br>
+    <p class="w3-justify" style="color:white">
+
+
+        A little research into the importance of local cultivation showed the extent of positive
+    impact it can have on the environment, in terms of reduced Carbon emissions and single use plastics. I believe locally produced and marketed food, especially
+    crops can be profitable and better for the environment. Just requires some conscious consumption from those who can do so, for the environment and their own health.
+    Meanwhile, disruptive innovation in Agri-Tech is definitely underway!
+    </p>
+
+</div>
+
+
+
+</body>
+</html>
