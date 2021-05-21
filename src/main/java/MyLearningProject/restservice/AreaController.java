@@ -150,6 +150,11 @@ public class AreaController {
         return "about";
     }
 
+    @RequestMapping("/home")
+    public String home(){
+        return "home";
+    }
+
 
 
 
