@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th ="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Garden</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="../static/css/stylesheet.css" th:href = "@{/css/style.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body style="background-color: black;" >
+
+<header>
+    <img src="" th:src = "@{/img/logo.png}"  alt="logo" class="logo" height = "200" width = "100">
+    <nav>
+        <ul>
+            <li><a href="" th:href = "@{home}">Home</a></li>
+            <li><a href="" th:href = "@{about}">About</a></li>
+            <li><a href="" th:href = "@{data}"> Data </a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="home-hero" th:style="'background: url(/img/home.jpg) no-repeat center center fixed;'" >
+    <div class="container" >
+
+        <h1 class="title"> <span> Resources </span></h1>
+
+    </div>
+
+</section>
+
+<br>
+<br>
+
+<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+
+
+    <h3 style="color:white"> Soil Data </h3>
+    <p class="w3-justify" style="color:white">
+        Soil Health Card. (2021). Retrieved 20 May 2021, from https://www.soilhealth.dac.gov.in/ </p>
+
+    <br>
+    <h3 style="color:white"> Crop Data </h3>
+    <p class="w3-justify" style="color:white">
+
+        Ganeshamurthy, A. N., Rupa, T. R., Kalaivanan, D., Raghupathi, H. B., Satisha, G. C.,
+        Rao, G. S., & Kumar, M. M. (2016). Fertiliser Management Practices for Horticultural Crops. Indian Journal of Fertilisers,
+        12(11), 66-81.</p>
+        <br>
+    <p class="w3-justify" style="color:white">
+        Crop Production Guide- Horticulture Crops, TNAU (2020). Retrieved 20 May 2021, from https://tnau.ac.in/research/wp-content
+        /uploads/sites/60/2020/02/Horticulture-CPG-2020.pdf </p>
+        <br>
+    <p class="w3-justify" style="color:white">
+        KZN-Agriculture (2021). Retrieved 20 May 2021, from https://www.kzndard.gov.za/images/Documents/Horticulture/Veg_prod
+        /climatic_requirements.pdf
+
+    </p>
+
+    <br>
+    <h3 style="color:white"> Climate Data </h3>
+    <p class="w3-justify" style="color:white">
+
+        Stackhouse, P. (2021). NASA POWER | Data Access Viewer. Retrieved 20 May 2021,
+        from https://power.larc.nasa.gov/data-access-viewer/
+
+
+    </p>
+
+</div>
+
+
+
+</body>
+</html>

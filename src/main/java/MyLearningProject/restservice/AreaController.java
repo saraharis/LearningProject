@@ -157,8 +157,11 @@ public class AreaController {
         return "home";
     }
 
-    @RequestMapping("foodprint")
+    @RequestMapping("/foodprint")
     public String foodprint(){ return "foodprint";}
+
+    @RequestMapping("/data")
+    public String data(){return "data";}
 
 
 
