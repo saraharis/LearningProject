@@ -11,7 +11,7 @@
 <body style="background-color: black;" >
 
 <header>
-    <img src="" th:src = "@{/img/logoo.png}"  alt="logo" class="logo" height = "200" width = "100">
+    <img src="" th:src = "@{/img/logo.png}"  alt="logo" class="logo" height = "200" width = "100">
     <nav>
         <ul>
             <li><a href="" th:href = "@{home}">Home</a></li>
@@ -49,13 +49,13 @@
 
     <section class = "portfolio">
 
-        <figure th:each= "crop: ${hm.keySet()}" class = "port-item" >
+        <figure th:each= "crop: ${hm.keySet()}" class = "crop-item" >
             <div class = "card">
 
                 <img src="" th:src = "@{/images/{image}(image = ${hm.get(crop)})}" alt="item" >
                 <figcaption class="crop-desc">
                     <p th:text = "${crop}" > </p>
-                    <a href="" class="button button-accent button-small">Read More</a>
+
                 </figcaption>
             </div>
         </figure>

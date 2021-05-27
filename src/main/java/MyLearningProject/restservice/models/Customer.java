@@ -13,6 +13,11 @@ public class Customer {
     @Column(name = "emailID")
     String email;
 
+    @Column(name = "pincode")
+    String pincode;
+
+
+
    public Customer() {};
 
     public Customer(Long id, String email) {
@@ -35,4 +40,13 @@ public class Customer {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getPincode() {
+        return pincode;
+    }
+
+    public void setPincode(String pincode) {
+        this.pincode = pincode;
+    }
+
 }

@@ -72,7 +72,7 @@ public class AreaController {
 
 
     @RequestMapping("/router2")
-    public String viewRouter2(Model model1, Model model2, Model model3, Model model4, @ModelAttribute("pincode") String pincode) throws SQLException {
+    public String viewRouter2(Model model1, Model model2, Model model3, Model model4, Model model5, @ModelAttribute("pincode") String pincode) throws SQLException {
 
         //Area region = pincodeRepository.findByPincode(pincode);
 
@@ -130,7 +130,9 @@ public class AreaController {
         } catch (Exception e){
             System.out.println("unavailable pincode");
             Customer customer = new Customer();
-            model1.addAttribute("customer", customer);
+            customer.setPincode(pincode);
+            System.out.println(customer.getPincode());
+            model5.addAttribute("customer", customer);
             return "pincode_not_available";
         }
 
@@ -154,6 +156,9 @@ public class AreaController {
     public String home(){
         return "home";
     }
+
+    @RequestMapping("foodprint")
+    public String foodprint(){ return "foodprint";}
 
 
 
@@ -185,7 +190,7 @@ public class AreaController {
         HashMap<String, String> imageMap = cropService.getImageMap(finalCropList);*/
         //model.addAttribute("hm", imageMap);
 
-        return "about";
+        return "test";
     }
 
 

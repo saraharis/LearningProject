@@ -21,7 +21,7 @@ img {
 	width: 95%;
 	max-width: 70em;
 	margin: 0 auto;
-	position: relative;
+	/*position: relative;*/
 }
 
 @media (min-width:60rem) {
@@ -157,8 +157,12 @@ nav a:focus {
 	color: #FFF;
 }
 
-/*blog
-==================*/
+@media (min-width: 60rem) {
+	.home-hero {
+		height: 100vh;
+		padding-top: 35vh;
+	}
+}
 
 /*crops.html
 =====================*/
@@ -201,7 +205,7 @@ display:block;
 }
 
 .port-item {
-	margin: 1;
+	margin: 0.5;
 	position: relative;
 }
 
@@ -220,6 +224,9 @@ display:block;
 	padding-bottom: 2em;
 }
 
+.port-desc p {
+	margin: 1em;
+}
 
 @media (min-width: 37rem) {
 	.port-item {
@@ -230,8 +237,9 @@ display:block;
 
 @media (min-width: 60rem) {
 	.port-item {
-		width: 33.3333334%;
+		width: 16.66666667%;
 		overflow: hidden;
+		/*width:33.333334%;*/
 	}
 
 	.port-desc {

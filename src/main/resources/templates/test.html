@@ -1,71 +1,120 @@
-<!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" xmlns:color="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html xmlns:th ="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Garden</title>
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-          crossorigin="anonymous">
-    <link href="style.css" th:href = "" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Garden Commune</title>
+    <link href="" th:href = "@{/css/test.css}" rel="stylesheet" type="text/css">
 </head>
-<body>
-
-<div class = "container">
+<body style="background-color: black;" >
 
 
-    <h1 class = "title"> Plants you can sow now! <span> based on your region's soil, microclimate and current season </span></h1>
+<header>
+    <img src="" th:src = "@{/img/logo.png}"  alt="logo" class="logo" height = "80" width = "80">
+    <nav>
+        <ul>
+            <li><a href="" th:href = "@{home}">Home</a></li>
+            <li><a href="" th:href = "@{about}">About</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="home-hero" th:style="'background: url(/img/home.jpg) no-repeat center center fixed;'" >
+    <div class="container"  >
 
 
+        <h1 class="title">Making sustainability easier <span> for conscious consumers</span>
+        </h1>
+        <h3> Enter pincode to get detailed garden profile... </h3>
+        <form class = "form-inline" action = "#" th:action = "@{/router2}" method = "GET" onsubmit = "validate()" >
 
-    <div class = "band">
+            <input id = "pincode" type="text" class="form-control" placeholder="Pincode" name = "pincode"/>
 
-        <a href="" class="card">
-
-        <section th:each= "crop: ${hm.keySet()}" >
-
-
-            <div class="item-1">
-
-            <figure class="port-item">
-
-                <div class="thumb" style="color:green"></div>
-
-                <!img src="img/post1.jpg" th:src = "@{/images/{image}(image = ${hm.get(crop)})}" alt="item">
-                <figcaption class="port-desc">
-
-                    <p th:text = "${crop}" > </p>
-                    <a href="" class="button button-accent button-small">Read More</a>
-                </figcaption>
-            </figure>
-            </div>
-
-        </section>
-
-        </a>
+        </form>
 
     </div>
 
+</section>
 
+<br>
+
+<h2 style="color:white;"> Blog Posts </h2>
+<div class = "container">
+    <section class="portfolio">
+
+
+        <figure class="chart-item">
+            <img src="" th:src = "@{/img/a1.jpg}" alt="portfolio item">
+            <figcaption class="crop-desc">
+                <p>Coming Soon</p>
+                <a href="" class="button button-accent button-small">Read More</a>
+            </figcaption>
+        </figure>
+
+        <figure class="chart-item">
+            <img src="" th:src = "@{/img/trichoderma.jpeg}" alt="portfolio item">
+            <figcaption class="crop-desc">
+                <p> Trichoderma for soil health </p>
+                <a href="https://www.instagram.com/p/CIaiWcug_JK/?utm_source=ig_web_copy_link" class="button button-accent button-small">Know More</a>
+            </figcaption>
+        </figure>
+
+
+        <figure class="chart-item">
+            <img src="" th:src = "@{/img/bihar.jpeg}" alt="portfolio item">
+            <figcaption class="crop-desc">
+                <p> Udhyan Mahotsav - Bihar </p>
+                <a href="https://www.instagram.com/p/CL9G3TLge2j/?utm_source=ig_web_copy_link" class="button button-accent button-small">Read More</a>
+            </figcaption>
+        </figure>
+
+
+        <figure class="chart-item">
+            <img src="" th:src = "@{/img/pm.jpeg}" alt="portfolio item">
+            <figcaption class="crop-desc">
+                <p> The PM farms</p>
+                <p><i> Source : The Better India </i></p>
+                <a href="https://www.facebook.com/thebetterindia/photos/a.10151330860254594/10158714136884594/?type=3" class="button button-accent button-small">Read More</a>
+            </figcaption>
+        </figure>
+
+        <!-- portfolio item 01 -->
+        <figure class="chart-item">
+            <img src="" th:src = "@{/img/p3.jpg}" alt="portfolio item">
+            <figcaption class="crop-desc">
+                <p>Project title</p>
+                <a href="" class="button button-accent button-small">Read More</a>
+            </figcaption>
+        </figure>
+
+        <!-- portfolio item 01 -->
+        <figure class="chart-item">
+            <img src="" th:src = "@{/img/nbs.jpg}" alt="portfolio item">
+            <figcaption class="crop-desc">
+                <p> Fostering Community Resilience through Nature Based Solutions </p>
+                <p><i> Source : The Green Matter </i></p>
+                <a href="https://www.thegreenmatter.org/fostering-community-resilience-through-nature-based-solutions/" class="button button-accent button-small">Read More</a>
+            </figcaption>
+        </figure>
+
+
+    </section>
+</div>
+
+<div class = "container">
+
+    <script src="script.js"></script>
+
+    <script src="js/parallax.js"></script>
 
 </div>
 
-<span id="soilData" style="display: none;" th:text="${district}"></span>
+<script type = "text/javascript" src = "" th:src = "@{/script/invalid_pincode.js}"></script>
 
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type = "text/javascript" th:src = "@{/script/soilCharts.js}">
-
-</script>
-
-<br>
-<br>
-
-<!--Div that will hold the pie chart-->
-
-<div class = portfolio>
-    <div class = "port-item" id = "soilChart"></div>
-</div>
 
 
 </body>
 </html>
+
+

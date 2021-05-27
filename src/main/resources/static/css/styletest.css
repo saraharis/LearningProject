@@ -20,6 +20,7 @@ img {
 	width: 95%;
 	max-width: 70em;
 	margin: 0 auto;
+
 }
 
 .clearfix::after,
@@ -278,6 +279,17 @@ nav a:focus {
 }
 /* crop
 ==================*/
+
+.crop-item {
+	margin: 1;
+	position: relative;
+}
+
+.crop-item img {
+	display: block;
+}
+
+
 .crop-desc{
 	position: absolute;
 	z-index: 100;
@@ -292,7 +304,35 @@ nav a:focus {
 	margin: 0.5em;
 }
 
+
+@media (min-width: 37rem) {
+	.crop-item {
+		width: 50%;
+		float: left;
+	}
+}
+
 @media (min-width: 60rem) {
+	.crop-item {
+
+		overflow: hidden;
+		width:16.66666667%;
+	}
+	.crop-desc {
+    		transform: translateY(150%);
+    	}
+
+    .crop-item:hover .crop-desc {
+    		transform: translateY(0%);
+    	}
+}
+
+/*----------------------*/
+
+
+
+
+/*@media (min-width: 60rem) {
 
 	.crop-desc {
 		transform: translateY(150%);
@@ -301,7 +341,7 @@ nav a:focus {
 	.port-item:hover .crop-desc {
 		transform: translateY(0%);
 	}
-}
+}*/
 
 
 
@@ -313,7 +353,7 @@ nav a:focus {
 }
 
 .port-item {
-	margin: 1;
+	margin: 0.5;
 	position: relative;
 }
 
@@ -347,7 +387,7 @@ nav a:focus {
 	.port-item {
 		/*width: 16.66666667%;*/
 		overflow: hidden;
-		width:16.66666667%;
+		width:33.333334%;
 	}
 
 	.port-desc {
@@ -451,9 +491,54 @@ font-size:15px;
 	}
 }
 
+/* FORM
+====================**/
 
+.form-inline {
+  /*display: flex;
+  flex-flow: row wrap;
+  align-items: center;*/
+      	font-weight: 300;
+      	display: block;
+      	font-size: .9em;
+      	width = 100%
+}
 
+.form-inline label {
 
+    	font-weight: 300;
+    	display: block;
+    	font-size: .9em;
+  color: #00ff6c;
+}
 
+.form-inline input {
+  vertical-align: middle;
+  padding: 10px;
+  border-color: #00ff6c;
 
+}
+
+/*.form-inline button {
+  padding: 10px 20px;
+  background-color: dodgerblue;
+  border: 1px solid #ddd;
+  color: white;
+  cursor: pointer;
+}*/
+
+/*.form-inline button:hover {
+  background-color: royalblue;
+}*/
+
+@media (max-width: 800px) {
+  .form-inline input {
+    margin: 10px 0;
+  }
+
+  .form-inline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
 

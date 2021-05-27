@@ -78,7 +78,7 @@
 
         var options = {
 
-            title: 'Soil',
+            title: 'Soil macronutrients',
             bar: {groupWidth: "95%"},
             backgroundColor: 'black',
             titleTextStyle: { color: 'white',
@@ -101,6 +101,8 @@
               },
 
               hAxis: {
+              title : '(Kg/hectare) ',
+              titleTextStyle : {color: 'white'},
               color : 'white',
                 textStyle: {
                   color: 'white'
@@ -128,7 +130,7 @@ var testChart = new google.visualization.ColumnChart(document.getElementById('nu
 
     var options = {
 
-                title: 'Soil',
+                title: 'Soil pH',
                 bar: {groupWidth: "30%"},
                 backgroundColor: 'black',
                 titleTextStyle: { color: 'white',
@@ -151,6 +153,7 @@ var testChart = new google.visualization.ColumnChart(document.getElementById('nu
                     },
                   hAxis: {
                   color : 'white',
+
                     textStyle: {
                       color: 'white'
                     }

@@ -1,0 +1,36 @@
+<!doctype html>
+<html xmlns:th ="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Garden Commune</title>
+    <link href="" th:href = "@{/css/test.css}" rel="stylesheet" type="text/css">
+</head>
+<body style="background-color: black;" >
+
+
+<header>
+    <img src="" th:src = "@{/img/logo.png}"  alt="logo" class="logo" height = "80" width = "80">
+    <nav>
+        <ul>
+            <li><a href="" th:href = "@{home}">Home</a></li>
+            <li><a href="" th:href = "@{about}">About</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="home-hero" th:style="'background: url(/img/home.jpg) no-repeat center center fixed;'" >
+    <div class="container"  >
+
+
+        <h1 class="title"><span> Coming Soon! </span></h1>
+        <p> Find verified, sustainably sourced local food around you and reduce your carbon foodprints! :D </p>
+
+
+    </div>
+
+</section>
+
+</body>
+</html>

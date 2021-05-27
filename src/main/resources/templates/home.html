@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Garden Commune</title>
-    <link href="" th:href = "@{/css/style.css}" rel="stylesheet" type="text/css">
+    <link href="" th:href = "@{/css/test.css}" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body style="background-color: black;" >
+
 
 <header>
-    <img src="" th:src = "@{/img/logoo.png}"  alt="logo" class="logo" height = "200" width = "100">
+    <img src="" th:src = "@{/img/logo.png}"  alt="logo" class="logo" height = "80" width = "80">
     <nav>
         <ul>
             <li><a href="" th:href = "@{home}">Home</a></li>
@@ -25,7 +26,7 @@
 
             <h1 class="title">Making sustainability easier <span> for conscious consumers</span>
             </h1>
-            <h3> Enter pincode to get detailed garden profile... </h3>
+            <h3> Enter pincode to get detailed garden profile... <p>(available in Kerala)</p> </h3>
             <form class = "form-inline" action = "#" th:action = "@{/router2}" method = "GET" onsubmit = "validate()" >
 
                     <input id = "pincode" type="text" class="form-control" placeholder="Pincode" name = "pincode"/>
@@ -36,64 +37,71 @@
 
 </section>
 
-<section class="portfolio">
-    <h1>Blog Posts</h1>
+<br>
 
-    <figure class="port-item">
-        <img src="" th:src = "@{/img/a1.jpg}" alt="portfolio item">
-        <figcaption class="port-desc">
-            <p>Coming Soon</p>
-            <a href="" class="button button-accent button-small">Read More</a>
-        </figcaption>
-    </figure>
-
-    <figure class="port-item">
-        <img src="" th:src = "@{/img/a2.jpg}" alt="portfolio item">
-        <figcaption class="port-desc">
-            <p>Egg</p>
-            <a href="" class="button button-accent button-small">Read More</a>
-        </figcaption>
-    </figure>
+<h2 style="color:white;"> Blog Posts </h2>
+<div class = "container">
+    <section class="portfolio">
 
 
-    <!-- portfolio item 01 -->
-    <figure class="port-item">
-        <img src="" th:src = "@{/img/p1.jpg}" alt="portfolio item">
-        <figcaption class="port-desc">
-            <p>Project title</p>
-            <a href="" class="button button-accent button-small">Read More</a>
-        </figcaption>
-    </figure>
+        <figure class="port-item">
+            <img src="" th:src = "@{/img/a1.jpg}" alt="portfolio item">
+            <figcaption class="port-desc">
+                <p>Coming Soon</p>
+                <a href="" th:href = "@{foodprint}" class="button button-accent button-small">Know More</a>
 
-    <!-- portfolio item 01 -->
-    <figure class="port-item">
-        <img src="" th:src = "@{/img/p2.jpg}" alt="portfolio item">
-        <figcaption class="port-desc">
-            <p>Project title</p>
-            <a href="" class="button button-accent button-small">Read More</a>
-        </figcaption>
-    </figure>
+            </figcaption>
+        </figure>
 
-    <!-- portfolio item 01 -->
-    <figure class="port-item">
-        <img src="" th:src = "@{/img/p3.jpg}" alt="portfolio item">
-        <figcaption class="port-desc">
-            <p>Project title</p>
-            <a href="" class="button button-accent button-small">Read More</a>
-        </figcaption>
-    </figure>
-
-    <!-- portfolio item 01 -->
-    <figure class="port-item">
-        <img src="" th:src = "@{/img/p4.jpg}" alt="portfolio item">
-        <figcaption class="port-desc">
-            <p>Project title</p>
-            <a href="" class="button button-accent button-small">Read More</a>
-        </figcaption>
-    </figure>
+        <figure class="port-item">
+            <img src="" th:src = "@{/img/trichoderma.jpeg}" alt="portfolio item">
+            <figcaption class="port-desc">
+                <p> Trichoderma for soil health </p>
+                <a href="https://www.instagram.com/p/CIaiWcug_JK/?utm_source=ig_web_copy_link" class="button button-accent button-small">Read More</a>
+            </figcaption>
+        </figure>
 
 
-</section>
+        <figure class="port-item">
+            <img src="" th:src = "@{/img/bihar.jpeg}" alt="portfolio item">
+            <figcaption class="port-desc">
+                <p> Udhyan Mahotsav - Bihar </p>
+                <a href="https://www.instagram.com/p/CL9G3TLge2j/?utm_source=ig_web_copy_link" class="button button-accent button-small">Read More</a>
+            </figcaption>
+        </figure>
+
+
+        <figure class="port-item">
+            <img src="" th:src = "@{/img/pm.jpeg}" alt="portfolio item">
+            <figcaption class="port-desc">
+                <p> The PM farms</p>
+                <p><i> Source : The Better India </i></p>
+                <a href="https://www.facebook.com/thebetterindia/photos/a.10151330860254594/10158714136884594/?type=3" class="button button-accent button-small">Read More</a>
+            </figcaption>
+        </figure>
+
+        <!-- portfolio item 01 -->
+        <figure class="port-item">
+            <img src="" th:src = "@{/img/pod.jpg}" alt="portfolio item">
+            <figcaption class="port-desc">
+                <p> Sustainability Podcasts </p>
+                <a href="https://open.spotify.com/episode/2pRCzsDjMovx5SC9lHL0fs?si=kQ1galYnRTezKtq6beIbTw&nd=1" class="button button-accent button-small"> Check it Out! </a>
+            </figcaption>
+        </figure>
+
+        <!-- portfolio item 01 -->
+        <figure class="port-item">
+            <img src="" th:src = "@{/img/nbs.jpg}" alt="portfolio item">
+            <figcaption class="port-desc">
+                <p> Fostering Community Resilience through Nature Based Solutions </p>
+                <p><i> Source : The Green Matter </i></p>
+                <a href="https://www.thegreenmatter.org/fostering-community-resilience-through-nature-based-solutions/" class="button button-accent button-small">Read More</a>
+            </figcaption>
+        </figure>
+
+
+    </section>
+</div>
 
 <div class = "container">
 
